@@ -65,7 +65,6 @@ const images = [
 ];
 
 const gallery = document.querySelector(".gallery");
-const galleryLink = document.querySelector(".gallery");
 
 const markup = images
   .map(
@@ -84,6 +83,29 @@ const markup = images
 
 gallery.insertAdjacentHTML("afterbegin", markup);
 
-// galleryLink.addEventListener("click", () => {
-//   event.preventDefault();
-// });
+gallery.addEventListener("click", (event) => {
+  if (event.target.nodeName === "IMG") {
+    openOriginalImage(event);
+  }
+});
+
+function openOriginalImage(event) {
+  const selectedOriginalImage = event.target.dataset.source;
+
+  const instance = basicLightbox.create(
+    `
+    <img src="${selectedOriginalImage}" width="1112" height="640">
+`
+  );
+
+  instance.show();
+
+  const handleEscEvent = (event) => {
+    if (event.code === "Escape") {
+      instance.close();
+      document.removeEventListener("keydown", handleEscEvent);
+    }
+  };
+
+  document.addEventListener("keydown", handleEscEvent);
+}

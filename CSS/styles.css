@@ -13,8 +13,8 @@ ul {
     display: flex;
     flex-wrap: wrap;
     width: 1440px;
-    height: 848px;
-    padding: 100px 156px;
+    height: 696px;
+    padding: 24px 156px;
     justify-content: center;
     align-items: flex-start;
     gap: 24px 24px;
@@ -29,8 +29,10 @@ ul {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 
-.gallery-item:hover {
+.gallery-image:hover {
     transform: scale(1.04);
 }
